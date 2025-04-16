@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>每日一句</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: '微軟正黑體', sans-serif;
+        background-color: #f0f8ff;
+        padding-top: 100px;
+      }
+      .quote {
+        font-size: 24px;
+        padding: 20px;
+        border: 2px dashed #aaa;
+        display: inline-block;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Albert_Einstein_1947.jpg/500px-Albert_Einstein_1947.jpg" width="25%" alt="這是圖片" title="oxxo" />
+    <br />
+    <div class="quote">{{ quote }}</div>
+    <hr />
+    <div class="quote">{{ quote.author }}</div>
+    <div class="quoteText">{{ quote.quoteText }}</div>
+    <br /><br />
+    <button onclick="window.location.reload();">再來一句</button>
+  </body>
+</html>
