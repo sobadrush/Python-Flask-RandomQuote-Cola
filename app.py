@@ -20,6 +20,9 @@ def aa():
 @app.route("/addQuote", methods=['GET', 'POST'])
 def addQuote():
   print(" === 進入 addQuote === ")
+  qouteText = request.form["qouteText"]
+  qouteAuthor = request.form.get("qouteAuthor")
+  print(f">>> qouteText: {qouteText}, qouteAuthor: {qouteAuthor}")
   return render_template('add.html')
 
 # app.run()
