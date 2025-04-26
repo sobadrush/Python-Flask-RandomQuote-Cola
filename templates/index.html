@@ -1,70 +1,76 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <title>
-    名言佳句
-    </title>
-    <style>
-        body {
-            text-align: center;
-            font-family: "微軟正黑體", sans-serif;
-            background-color: #f0f8ff;
-            padding-top: 50px;
-        }
-        .quote-container {
-            opacity: 0;
-            animation: fadeIn 1s ease-in forwards;
-            margin: 20px auto;
-            max-width: 800px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .quote-text {
-            font-size: 36px;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        .quote-author {
-            font-size: 24px;
-            color: #7f8c8d;
-            font-style: italic;
-        }
-        .buttons {
-            margin-top: 30px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 0 10px;
-            cursor: pointer;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+  <head>
+      <meta charset="UTF-8">
+      <title>
+      名言佳句
+      </title>
+      <style>
+          body {
+              text-align: center;
+              font-family: "微軟正黑體", sans-serif;
+              background-color: #f0f8ff;
+              padding-top: 50px;
+          }
+          .quote-container {
+              opacity: 0;
+              animation: fadeIn 1s ease-in forwards;
+              margin: 20px auto;
+              max-width: 800px;
+              background-color: white;
+              padding: 30px;
+              border-radius: 10px;
+              box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          }
+          .quote-text {
+              font-size: 36px;
+              color: #2c3e50;
+              margin-bottom: 20px;
+          }
+          .quote-author {
+              font-size: 24px;
+              color: #7f8c8d;
+              font-style: italic;
+          }
+          .buttons {
+              margin-top: 30px;
+          }
+          button {
+              padding: 10px 20px;
+              font-size: 16px;
+              margin: 0 10px;
+              cursor: pointer;
+              background-color: #3498db;
+              color: white;
+              border: none;
+              border-radius: 5px;
+              transition: background-color 0.3s;
+          }
+          button:hover {
+              background-color: #2980b9;
+          }
+          @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(20px); }
+              to { opacity: 1; transform: translateY(0); }
+          }
+      </style>
 
-</head>
-<body>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Dylan_Wang.jpg/500px-Dylan_Wang.jpg"width="150" alt="圖片片失效" title="王鶴棣">
-    <br>
-    <div class="quote">
-    {{quote}}
-    </div>
-    <br>
-    <button onclick="window.location.reload();">
+  </head>
+  <body>
+      <img src="https://cdn2.ettoday.net/images/8171/d8171939.jpg" width="50%" alt="" title="">
+      <br/>
+      
+      <div class="quote-container">
+        <div class="quote-text">
+          {{ quote }}
+        </div>
+      </div>
+      
+      <br/>
+      
+      <button onclick="window.location.reload();">
         重新整理
-    </button>
-</body>
+      </button>
+
+  </body>
 </html>
