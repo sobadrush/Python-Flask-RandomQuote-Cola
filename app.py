@@ -17,7 +17,7 @@ def aa():
     print(" === 有人連線 === ")
     return render_template("index.html", quoteX=random.choice(quotes))
 
-@app.route("/addQuote")
+@app.route("/addQuote", methods=['GET', 'POST'])
 def addQuote():
   print(" === 進入 addQuote === ")
   return render_template('add.html')
