@@ -20,14 +20,18 @@ def index():
 def addQuote():
   if request.method == 'POST':
     # 從表單獲取新的名言和作者
-    qouteText = request.form["qouteText"]
-    qouteAuthor = request.form.get("qouteAuthor")
+    new_first = request.form["my_first_part"]
+    new_second = request.form.get("my_second_part")
+    new_author = request.form.get("my_author")
     
-    # 確保兩個欄位都不為空
-    if qouteText and qouteAuthor:
-      quotes.append({"quote": qouteText, "author": qouteAuthor})
-      return redirect(url_for('index'))
+    print(f">>> new_first: {new_first}", end="\n")
+    print(f">>> new_second: {new_second}", end="\n")
+    print(f">>> new_author: {new_author}", end="\n")
+
+    # 確保所有欄位都不為空
     
+  
+  # GET 請求時顯示新增表單
   return render_template('add.html')
 
 if __name__ == "__main__":
