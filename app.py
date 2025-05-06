@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import random
+import secrets
 
 app = Flask(__name__)
+app.secret_key = secrets.token_hex(16) # 用於 session 加密，若沒設置，會發生錯誤: The session is unavailable because no secret key was set
 
 # 使用字典來儲存名言和作者
 first_parts = [
@@ -28,13 +30,39 @@ authors = [
     "小明"
 ]
 
+# 初始化 session 中的 key 之 value 為 empty-list
+def reset_session():
+    session['used_first_parts'] = []
+    session['used_second_parts'] = []
+    session['used_authors'] = []
+
 @app.route("/")
 def index():
-    print(random.choice(first_parts))
+  
+    # 若 session 中無此 key → 初始化此 key 為 []
+    if 'used_first_parts' not in session:
+        reset_session()
+    
+    # 檢查是否需要重置
+    if (len(session['used_first_parts']) >= len(first_parts) or 
+        len(session['used_second_parts']) >= len(second_parts) or 
+        len(session['used_authors']) >= len(authors)):
+        reset_session()
+    
+    first_part_choice = random.choice(first_parts)
+    second_part_choice = random.choice(second_parts)
+    author_choice = random.choice(authors)
+    
+    session['used_first_parts'].append(first_part_choice)
+    session['used_second_parts'].append(second_part_choice)
+    session['used_authors'].append(author_choice)
+    
     quoteBeChoice = {
-      "text": random.choice(first_parts) + "，" +  random.choice(second_parts),
+      "text": random.choice(first_parts) + "，" + random.choice(second_parts),
       "author": random.choice(authors)
     }
+    
+    print(f">>> session: {session}")
     return render_template("index.html", quoteX=quoteBeChoice)
 
 @app.route("/addQuote", methods=['GET', 'POST'])
