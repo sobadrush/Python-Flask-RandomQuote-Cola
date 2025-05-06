@@ -3,18 +3,39 @@ import random
 
 app = Flask(__name__)
 
-quotes = [
-    {"author": "漢堡老師", "quote": "上課要專心"},
-    {"author": "唐納·川普", "quote": "You don't have cards."},
-    {"author": "江戶川·柯南", "quote": "真相只有一個"},
-    {"author": "和田教授", "quote": "休息是為了走更長遠的路"},
-    {"author": "廣志", "quote": "走更遠的路, 是為了休息"},
-    {"author": "館長", "quote": "暴力不能解決問題，但能解決你"},
+# 使用字典來儲存名言和作者
+first_parts = [
+    "人生沒有白走的路，",
+    "別怕慢，",
+    "和田教授說的是對的，",
+    "上課要認真，",
+    "聽君一席話，"
+]
+
+second_parts = [
+    "每一步都算數。",
+    "只怕站。",
+    "我們要相信他。",
+    "才能學到東西。",
+    "如聽一席話。"
+]
+
+authors = [
+    "漢堡",
+    "可樂",
+    "酸民",
+    "蛋黃",
+    "小明"
 ]
 
 @app.route("/")
 def index():
-    return render_template("index.html", quoteX=random.choice(quotes))
+    print(random.choice(first_parts))
+    quoteBeChoice = {
+      "text": random.choice(first_parts) + random.choice(second_parts),
+      "author": random.choice(authors)
+    }
+    return render_template("index.html", quoteX=quoteBeChoice)
 
 @app.route("/addQuote", methods=['GET', 'POST'])
 def addQuote():
@@ -29,7 +50,7 @@ def addQuote():
     print(f">>> new_author: {new_author}", end="\n")
 
     # 確保所有欄位都不為空
-    
+      
   
   # GET 請求時顯示新增表單
   return render_template('add.html')
