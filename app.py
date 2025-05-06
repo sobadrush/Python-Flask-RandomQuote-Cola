@@ -5,11 +5,11 @@ app = Flask(__name__)
 
 # 使用字典來儲存名言和作者
 first_parts = [
-    "人生沒有白走的路，",
-    "別怕慢，",
-    "和田教授說的是對的，",
-    "上課要認真，",
-    "聽君一席話，"
+    "人生沒有白走的路",
+    "別怕慢",
+    "和田教授說的是對的",
+    "上課要認真",
+    "聽君一席話"
 ]
 
 second_parts = [
@@ -32,7 +32,7 @@ authors = [
 def index():
     print(random.choice(first_parts))
     quoteBeChoice = {
-      "text": random.choice(first_parts) + random.choice(second_parts),
+      "text": random.choice(first_parts) + "，" +  random.choice(second_parts),
       "author": random.choice(authors)
     }
     return render_template("index.html", quoteX=quoteBeChoice)
@@ -50,7 +50,12 @@ def addQuote():
     print(f">>> new_author: {new_author}", end="\n")
 
     # 確保所有欄位都不為空
-      
+    if new_first and new_second and new_author:
+      first_parts.append(new_first)
+      second_parts.append(new_second)
+      authors.append(new_author)
+      print(f">>> url_for(index) 是: {url_for("index")}")
+      return redirect(url_for("index"))
   
   # GET 請求時顯示新增表單
   return render_template('add.html')
