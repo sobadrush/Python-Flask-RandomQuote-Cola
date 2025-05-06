@@ -14,28 +14,21 @@ quotes = [
 
 @app.route("/")
 def index():
-    print(" === 有人連線 === ")
-    print(f">>> quotes : {quotes}")
     return render_template("index.html", quoteX=random.choice(quotes))
 
 @app.route("/addQuote", methods=['GET', 'POST'])
 def addQuote():
   if request.method == 'POST':
-    print(" === 進入 addQuote === ")
-    
     # 從表單獲取新的名言和作者
     qouteText = request.form["qouteText"]
     qouteAuthor = request.form.get("qouteAuthor")
-    print(f">>> qouteText: {qouteText}, qouteAuthor: {qouteAuthor}")
     
     # 確保兩個欄位都不為空
     if qouteText and qouteAuthor:
       quotes.append({"quote": qouteText, "author": qouteAuthor})
-      print(f">>> url_for('index') 是 : {url_for('index')}")
       return redirect(url_for('index'))
     
   return render_template('add.html')
 
-# app.run()
 if __name__ == "__main__":
     app.run(debug=True, port=8787)
