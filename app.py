@@ -54,7 +54,15 @@ def index():
         len(session['used_authors']) >= len(authors)):
         reset_session()
     
-    first_part_choice = random.choice(first_parts)
+    # 隨機選擇未使用的 [前半句] index
+    available_first = []
+    for i in range(len(first_parts)):
+      if i not in session['used_first_parts']:
+        available_first.append(i)
+    first_idx = random.choice(available_first)
+    print(f"available_first = {available_first}")
+    session['used_first_parts'].append(first_idx)
+    
     second_part_choice = random.choice(second_parts)
     author_choice = random.choice(authors)
     
@@ -63,8 +71,8 @@ def index():
     session['used_authors'].append(author_choice)
     
     quoteBeChoice = {
-      "text": random.choice(first_parts) + "，" + random.choice(second_parts),
-      "author": random.choice(authors)
+      "text": first_parts[first_idx] + "，" + second_parts[second_idx],
+      "author": authors[author_idx]
     }
     
     print(f">>> session: {session}")
