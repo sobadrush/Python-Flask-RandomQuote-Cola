@@ -38,6 +38,7 @@ def reset_session():
     session['used_first_parts'] = []
     session['used_second_parts'] = []
     session['used_authors'] = []
+    session.modified = True # 顯式標記 session 已被修改
 
 @app.route("/")
 def index():
