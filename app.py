@@ -102,7 +102,7 @@ def addQuote():
       first_parts.append(new_first)
       second_parts.append(new_second)
       authors.append(new_author)
-      print(f">>> url_for(index) 是: {url_for("index")}")
+      print(f">>> url_for(index) 是: {url_for('index')}")
       return redirect(url_for("index"))
   
   # GET 請求時顯示新增表單
