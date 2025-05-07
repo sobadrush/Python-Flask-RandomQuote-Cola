@@ -63,12 +63,11 @@ def index():
     print(f"available_first = {available_first}")
     session['used_first_parts'].append(first_idx)
     
-    second_part_choice = random.choice(second_parts)
-    author_choice = random.choice(authors)
-    
-    session['used_first_parts'].append(first_part_choice)
-    session['used_second_parts'].append(second_part_choice)
-    session['used_authors'].append(author_choice)
+    # 隨機選擇未使用的 [後半句] index
+    available_second = [i for i in range(len(second_parts)) if i not in session['used_second_parts']]
+    print(f"available_second = {available_second}")
+    second_idx = random.choice(available_second)
+    session['used_second_parts'].append(second_idx)
     
     quoteBeChoice = {
       "text": first_parts[first_idx] + "，" + second_parts[second_idx],
