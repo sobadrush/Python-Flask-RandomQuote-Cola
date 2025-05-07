@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import random
 import secrets
+import os
 
+sessionKey = os.urandom(16)
 app = Flask(__name__)
-app.secret_key = secrets.token_hex(16) # 用於 session 加密，若沒設置，會發生錯誤: The session is unavailable because no secret key was set
+# app.secret_key = secrets.token_hex(16) # 用於 session 加密，若沒設置，會發生錯誤: The session is unavailable because no secret key was set
+app.secret_key = sessionKey # 用於 session 加密，若沒設置，會發生錯誤: The session is unavailable because no secret key was set
 
 # 使用字典來儲存名言和作者
 first_parts = [
@@ -38,6 +41,7 @@ def reset_session():
 
 @app.route("/")
 def index():
+    print(f"session key: {sessionKey}")
   
     # 若 session 中無此 key → 初始化此 key 為 []
     if 'used_first_parts' not in session:
