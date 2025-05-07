@@ -62,24 +62,26 @@ def index():
     first_idx = random.choice(available_first)
     print(f"available_first = {available_first}")
     session['used_first_parts'].append(first_idx)
+    session.modified = True # 顯式標記 session 已被修改
     
     # 隨機選擇未使用的 [後半句] index
     available_second = [i for i in range(len(second_parts)) if i not in session['used_second_parts']]
     print(f"available_second = {available_second}")
     second_idx = random.choice(available_second)
     session['used_second_parts'].append(second_idx)
+    session.modified = True # 顯式標記 session 已被修改
     
     # 隨機選擇未使用的 [作者] index
     available_authors = [i for i in range(len(authors)) if i not in session['used_authors']]
     print(f"available_authors = {available_authors}")
     author_idx = random.choice(available_authors)
     session['used_authors'].append(author_idx)
+    session.modified = True # 顯式標記 session 已被修改
     
     quoteBeChoice = {
       "text": first_parts[first_idx] + "，" + second_parts[second_idx],
       "author": authors[author_idx]
     }
-    
     print(f">>> session: {session}")
     return render_template("index.html", quoteX=quoteBeChoice)
 
