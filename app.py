@@ -69,6 +69,12 @@ def index():
     second_idx = random.choice(available_second)
     session['used_second_parts'].append(second_idx)
     
+    # 隨機選擇未使用的 [作者] index
+    available_authors = [i for i in range(len(authors)) if i not in session['used_authors']]
+    print(f"available_authors = {available_authors}")
+    author_idx = random.choice(available_authors)
+    session['used_authors'].append(author_idx)
+    
     quoteBeChoice = {
       "text": first_parts[first_idx] + "，" + second_parts[second_idx],
       "author": authors[author_idx]
