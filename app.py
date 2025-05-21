@@ -50,7 +50,12 @@ def addQuote():
     print(f">>> new_author: {new_author}", end="\n")
 
     # 確保所有欄位都不為空
-      
+    if new_first and new_second and new_author:
+       first_parts.append(new_first)
+       second_parts.append(new_second)
+       authors.append(new_author)
+       print(f"url_for('indes') : {url_for('index')}")
+       return redirect(url_for('index'))
   
   # GET 請求時顯示新增表單
   return render_template('add.html')
