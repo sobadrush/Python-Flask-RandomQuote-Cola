@@ -33,6 +33,11 @@ authors = [
     "小明"
 ]
 
+USER_PASSWORD = {
+    "admin": "password",
+    "BeanSamuel": "1234"
+}
+
 # 初始化 session 中的 key 之 value 為 empty-list
 def reset_session():
     session['used_first_parts'] = []
@@ -87,6 +92,9 @@ def index():
 
 @app.route("/addQuote", methods=['GET', 'POST'])
 def addQuote():
+  if 'logged_in' not in session or not session['logged_in']:
+    return redirect(url_for('login'))
+
   if request.method == 'POST':
     # 從表單獲取新的名言和作者
     new_first = request.form["my_first_part"]
@@ -107,6 +115,18 @@ def addQuote():
   
   # GET 請求時顯示新增表單
   return render_template('add.html')
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        if username in USER_PASSWORD and USER_PASSWORD[username] == password:
+            session['logged_in'] = True
+            return redirect(url_for('index'))
+    
+    return render_template('login.html')
 
 if __name__ == "__main__":
     app.run(debug=True, port=8787)
